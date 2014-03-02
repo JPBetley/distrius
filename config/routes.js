@@ -7,4 +7,12 @@ module.exports = function(app){
 	var file = require('../app/controllers/file');
 	app.get('/files', file.index);
 
+	var passport = require('passport');
+	app.post('/login', passport.authenticate('local', { 
+                            successRedirect: '/',
+                            failureRedirect: '/login'
+                        }));
+
+
+
 };
