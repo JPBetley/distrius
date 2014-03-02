@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 
 var DownloadSchema = new Schema({
     url: String,
+    file_url: String,
     download_date: Date
 });
 
