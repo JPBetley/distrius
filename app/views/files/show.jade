@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+    h1 File URL
+
+    input(type='text', id='url_output')
+
+    form(action='/download', method='POST', id='generate-form')
+        input(type='hidden', name='file_id', value=file._id)
+        input(type='submit', value='Generate Download Link')
+
+script(type='text/javascript', src='/js/generate.js')
