@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     path = require('path'),
-    File = mongoose.model('File');
+    File = mongoose.model('File'),
+    slug_service = require('../services/slug_service');
 
 exports.index = function(req, res) {
     res.render('files/index', {});
@@ -13,7 +14,8 @@ exports.create = function(req, res) {
         url: url,
         name: name,
         ipaddress: req.ip,
-        hostname: req.hostname
+        hostname: req.hostname,
+        slug: slug_service.generate_slug()
     }, function(createErr, file) {
         res.redirect('/file/' + file.slug);
     });
