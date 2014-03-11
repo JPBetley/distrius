@@ -3,10 +3,7 @@ var mongoose = require('mongoose'),
     File = mongoose.model('File');
 
 exports.index = function(req, res) {
-    File.find(function(err, files) {
-        if(err) throw new Error(err);
-        res.render('files/index', {});
-    });
+    res.render('files/index', {});
 };
 
 exports.create = function(req, res) {
@@ -29,3 +26,4 @@ exports.show = function(req, res) {
         res.render('files/show', { file: file });
     });
 };
+
