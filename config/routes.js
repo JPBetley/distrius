@@ -1,18 +1,12 @@
 module.exports = function(app){
 
 	//home route
-	var home = require('../app/controllers/home');
-	app.get('/', home.index);
-
 	var file = require('../app/controllers/file');
-	app.get('/files', file.index);
+	app.get('/', file.index);
+    app.post('/', file.create);
+    app.get('/file/:slug', file.show);
 
-	var passport = require('passport');
-	app.post('/login', passport.authenticate('local', { 
-                            successRedirect: '/',
-                            failureRedirect: '/login'
-                        }));
-
-
+	var download = require('../app/controllers/download');
+	app.get('/download/:slug', download.download);
 
 };
