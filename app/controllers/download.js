@@ -2,7 +2,8 @@ var mongoose = require('mongoose'),
     http = require('http'),
     request = require('request'),
     Download = mongoose.model('Download'),
-    File = mongoose.model('File');
+    File = mongoose.model('File'),
+    slug_service = require('../services/slug_service');
 
 exports.download = function(req, res) {
     var slug = req.params.slug;
@@ -33,7 +34,8 @@ exports.create = function(req, res) {
     File.findById(file_id, function(findErr, file) {
         Download.create({
             file_url: file.url,
-            file_name: file.name
+            file_name: file.name,
+            slug: slug_service.generate_slug()
         }, function(createErr, download) {
             res.json({ slug: download.slug });
         });
