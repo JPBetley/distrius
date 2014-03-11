@@ -1,11 +1,10 @@
 // Example model
 
 var mongoose = require('mongoose'),
-  Schema = mongoose.Schema,
-  slug_service = require('../services/slug_service');
+  Schema = mongoose.Schema;
 
 var DownloadSchema = new Schema({
-    slug: { type: String, default: slug_service.generate_slug() },
+    slug: String,
     file_name: String,
     file_url: String,
     download_date: Date,
