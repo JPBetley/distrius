@@ -1,13 +1,15 @@
 extends ../layout
 
 block content
-    h1 File: file.name
-    h2 File URL: file.url
+    h1 File: 
+        = file.name
+    h4.text-muted You may wish to bookmark this page to generate more download links in the future
 
-    input(type='text', id='url_output')
+    input(type='text', id='url-output', class='form-control', onclick='this.select()')
 
     form(action='/download', method='POST', id='generate-form')
-        input(type='hidden', name='file_id', value=file._id)
-        input(type='submit', value='Generate Download Link')
+        div.form-group
+            input(type='hidden', name='file_id', value=file._id, class='form-control')
+        input(type='submit', value='Generate Download Link', class=['btn', 'btn-primary', 'btn-lg', 'btn-block'])
 
-script(type='text/javascript', src='/js/generate.js')
+    script(type='text/javascript', src='/js/generate.js')
