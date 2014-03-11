@@ -8,5 +8,6 @@ module.exports = function(app){
 
 	var download = require('../app/controllers/download');
 	app.get('/download/:slug', download.download);
+	app.post('/download', download.create);
 
 };
