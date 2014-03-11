@@ -1,4 +1,8 @@
 extends ../layout
 
 block content
+    h1 File URL
+    form(action='/', method='POST')
+        input(type='text', placeholder='File URL', name='url')
+        input(type='submit', value='Submit')
 
