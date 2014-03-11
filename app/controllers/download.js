@@ -1,16 +1,42 @@
 var mongoose = require('mongoose'),
-    Download = mongoose.model('Download');
+    http = require('http'),
+    request = require('request'),
+    Download = mongoose.model('Download'),
+    File = mongoose.model('File');
 
 exports.download = function(req, res) {
     var slug = req.params.slug;
     Download.findOne({ 'slug': slug }, function (err, download) {
-        download.ipaddress = req.ip;
-        download.hostname = req.host;
-        download.download_date = Date.now();
-        download.save(function (saveErr) {});
+        console.log(download.download_date);
+        if (download.download_date === undefined) {
+            download.ipaddress = req.ip;
+            download.hostname = req.host;
+            download.download_date = Date.now();
+            download.save(function (saveErr) {
+                if (saveErr) {
+                    console.log(saveErr);
+                    return res.render('404');
+                }
+            });
 
-        res.download(download.file_url, download.file_name, function (downloadErr) {
+            res.attachment(download.file_name);
+            request.get(download.file_url).pipe(res);
 
+        } else { 
+            res.render('download/used', {});
+        }
+    });
+};
+
+exports.create = function(req, res) {
+    var file_id = req.body.file_id;
+    File.findById(file_id, function(findErr, file) {
+        Download.create({
+            file_url: file.url,
+            file_name: file.name
+        }, function(createErr, download) {
+            res.json({ slug: download.slug });
         });
     });
 };
+
