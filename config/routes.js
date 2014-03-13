@@ -10,4 +10,7 @@ module.exports = function(app){
 	app.get('/download/:slug', download.download);
 	app.post('/download', download.create);
 
+	var about = require('../app/controllers/about');
+	app.get('/about', about.index);
+
 };
