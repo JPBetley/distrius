@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
     slug_service = require('../services/slug_service');
 
 exports.index = function(req, res) {
-    res.render('files/index', {});
+    res.render('files/index');
 };
 
 exports.create = function(req, res) {
