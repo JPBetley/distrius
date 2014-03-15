@@ -16,7 +16,7 @@ module.exports = function(app, config) {
     app.use(express.csrf());
     app.use(express.methodOverride());
     app.use(function(req, res, next) {
-        res.locals.token = req.session._csrf;
+        res.locals.token = req.csrfToken();
         next();
     });
 
