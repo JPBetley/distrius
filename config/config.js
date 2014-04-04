@@ -6,19 +6,19 @@ var config = {
   development: {
     root: rootPath,
     app: {
-      name: 'shippit'
+      name: 'distrius'
     },
     port: 3000,
-    db: 'mongodb://localhost/shippit-development'
+    db: 'mongodb://localhost/distrius'
   },
 
   test: {
     root: rootPath,
     app: {
-      name: 'shippit'
+      name: 'distrius'
     },
     port: 3000,
-    db: 'mongodb://localhost/shippit-test'
+    db: 'mongodb://localhost/distrius'
   },
 
   production: {
