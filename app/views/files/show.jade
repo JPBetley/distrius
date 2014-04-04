@@ -5,12 +5,23 @@ block content
         = file.name
     h4.text-muted You may wish to bookmark this page to generate more download links in the future
 
-    input(type='text', id='url-output', class='form-control', onclick='this.select()')
 
     form(action='/download', method='POST', id='generate-form')
         input(type='hidden', name='_csrf', value=token)
+        h3 Number of Uses
+        div.form-group
+            div(class="input-group input-group-lg")
+                span.input-group-btn
+                    button(id="minus-button", class="btn btn-default glyphicon glyphicon-minus", type="button")
+                input(type="text", class="form-control", name="uses", id="uses-input", value="1")
+                span.input-group-btn
+                    button(id="plus-button", class="btn btn-default glyphicon glyphicon-plus", type="button")
         div.form-group
             input(type='hidden', name='file_id', value=file._id, class='form-control')
         input(type='submit', value='Generate Download Link', class=['btn', 'btn-primary', 'btn-lg', 'btn-block'])
+
+
+    h3 Generated Link
+    input(type='text', id='url-output', class='form-control', onclick='this.select()')
 
     script(type='text/javascript', src='/js/generate.js')

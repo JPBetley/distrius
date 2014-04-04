@@ -9,7 +9,8 @@ var DownloadSchema = new Schema({
     file_url: String,
     download_date: Date,
     ipaddress: String,
-    hostname: String
+    hostname: String,
+    uses_remaining: Number
 });
 
 DownloadSchema.virtual('date')

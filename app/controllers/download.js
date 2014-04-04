@@ -9,9 +9,10 @@ exports.download = function(req, res) {
     var slug = req.params.slug;
     Download.findOne({ 'slug': slug }, function (err, download) {
         console.log(download.download_date);
-        if (download.download_date === undefined) {
+        if (download.uses_remaining !== 0) {
             download.ipaddress = req.ip;
             download.hostname = req.host;
+            download.uses_remaining = download.uses_remaining - 1;
             download.download_date = Date.now();
             download.save(function (saveErr) {
                 if (saveErr) {
@@ -30,12 +31,14 @@ exports.download = function(req, res) {
 };
 
 exports.create = function(req, res) {
-    var file_id = req.body.file_id;
+    var file_id = req.body.file_id
+        uses = req.body.uses;
     File.findById(file_id, function(findErr, file) {
         Download.create({
             file_url: file.url,
             file_name: file.name,
-            slug: slug_service.generate_slug()
+            slug: slug_service.generate_slug(),
+            uses_remaining: uses 
         }, function(createErr, download) {
             res.json({ slug: download.slug });
         });
