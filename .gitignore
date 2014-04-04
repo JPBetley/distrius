@@ -3,3 +3,4 @@ node_modules
 .vagrant
 .DS_Store
 config/*.env
+*.pyc
