@@ -1,0 +1,7 @@
+start on starting <%= app %>-<%= name %>
+stop on stopping <%= app %>-<%= name %>
+respawn
+respawn limit 50 5
+
+exec su - <%= user %> -c 'cd <%= engine.root %>;<% engine.env.each_pair do |var,env| %> export <%= var.upcase %>="<%= env %>"; <% end %> export TMPDIR=$TMPDIR/<%= app %>/<%= name %>/<%= num %>; rm -rf $TMPDIR; mkdir -p $TMPDIR; <%= process.command %> >> <%= log %>/<%=name%>-<%=num%>.log 2>&1'
+
