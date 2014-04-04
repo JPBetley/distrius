@@ -24,10 +24,10 @@ var config = {
   production: {
     root: rootPath,
     app: {
-      name: 'shippit'
+      name: process.env.APP_NAME
     },
-    port: 3000,
-    db: 'mongodb://localhost/shippit-production'
+    port: process.env.PORT,
+    db: process.env.DATABASE
   }
 };
 
