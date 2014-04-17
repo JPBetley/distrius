@@ -10,12 +10,12 @@ block content
         input(type='hidden', name='_csrf', value=token)
         h3 Number of Uses
         div.form-group
-            div(class="input-group input-group-lg")
+            div(class='input-group input-group-lg')
                 span.input-group-btn
-                    button(id="minus-button", class="btn btn-default glyphicon glyphicon-minus", type="button")
-                input(type="text", class="form-control", name="uses", id="uses-input", value="1")
+                    button(id='minus-button', class='btn btn-default glyphicon glyphicon-minus', type='button')
+                input(type='text', class='form-control', name='uses', id='uses-input', value='1')
                 span.input-group-btn
-                    button(id="plus-button", class="btn btn-default glyphicon glyphicon-plus", type="button")
+                    button(id='plus-button', class='btn btn-default glyphicon glyphicon-plus', type='button')
         div.form-group
             input(type='hidden', name='file_id', value=file._id, class='form-control')
         input(type='submit', value='Generate Download Link', class=['btn', 'btn-primary', 'btn-lg', 'btn-block'])
