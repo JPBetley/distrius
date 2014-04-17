@@ -24,7 +24,22 @@ module.exports = function(app, config) {
 
     app.use(app.router);
     app.use(function(req, res) {
-      res.status(404).render('404', { title: '404' });
+        res.status(404);
+
+        // respond with html page
+        if (req.accepts('html')) {
+            res.render('404', { url: req.url });
+            return;
+        }
+
+        // respond with json
+        if (req.accepts('json')) {
+            res.send({ error: 'Not found' });
+            return;
+        }
+
+        // default to plain-text. send()
+        res.type('txt').send('Not found');
     });
   });
 };
