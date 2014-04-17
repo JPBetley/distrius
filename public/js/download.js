@@ -19,9 +19,19 @@ var Download = (function($) {
     var _getDownload = function () {
         var downloadCode = this.$download.val();
 
-        $.ajax({
-            
-        });
+        if (downloadCode.length > 0) {
+            $.ajax({
+                url: "/download/" + downloadCode,
+                type: "GET",
+            })
+            .fail(_downloadError);
+        } else {
+            alert("Must enter a download code.");
+        }
+    };
+
+    var _downloadError = function(error) {
+        alert(error);
     };
 
 })(jQuery);
