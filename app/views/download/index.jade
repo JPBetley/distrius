@@ -5,4 +5,9 @@ block content
         div.form-group
             input(id='js-download' type='text', placeholder='Download Code', name='url', class='form-control')
         input(id='js-submit', type='submit', value='Submit', class=['btn', 'btn-primary', 'btn-lg', 'btn-block'])
+
+    script(type='text/javascript')
+        $(function() {
+            Download.init();
+        });
    
