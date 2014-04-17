@@ -1,4 +1,4 @@
-(function($) {
+var Generate = (function($) {
     var Generate = {
         init: function() {
             this.cacheElements();
@@ -93,6 +93,6 @@
         }
     };
 
-    Generate.init();
+    return Generate;
 
 })(jQuery);
