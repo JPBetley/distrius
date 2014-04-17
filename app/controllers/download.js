@@ -19,7 +19,6 @@ exports.download = function(req, res) {
 
 var _streamDownload = function(req, res, download, callback) {
     download.ipaddress = req.ip;
-    download.hostname = req.host;
     download.uses_remaining = download.uses_remaining - 1;
     download.download_date = Date.now();
     download.save(callback);
